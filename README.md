@@ -1,1 +1,1 @@
-# loopback-geopoint
+# loopback-datatype-geopoint
