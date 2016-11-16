@@ -48,42 +48,75 @@ describe('GeoPoint', function() {
       });
 
     it('rejects invalid parameters', function() {
+      // invalid string value throws error
+      fn = function() {
+        new GeoPoint('invalid_string');
+      };
+      fn.should.throw();
+
+      // lattitude cannot be out of +/-90 degree range
       var fn = function() {
         new GeoPoint('150,-34');
       };
       fn.should.throw();
 
       fn = function() {
-        new GeoPoint('invalid_string');
+        new GeoPoint([-94, -34]);
       };
       fn.should.throw();
 
-      fn = function() {
-        new GeoPoint([150, -34]);
-      };
-      fn.should.throw();
-
+      // longitude cannot be out of +/-180 degree range
       fn = function() {
         new GeoPoint({
-          lat: 150,
-          lng: null,
+          lat: 10,
+          lng: 181,
         });
       };
       fn.should.throw();
 
       fn = function() {
-        new GeoPoint(150, -34);
+        new GeoPoint(10, -181);
       };
       fn.should.throw();
 
+      // empty values throw error
       fn = function() {
         new GeoPoint();
       };
       fn.should.throw();
 
-      // array with more than two elements is not allowed
+      fn = function() {
+        new GeoPoint({});
+      };
+      fn.should.throw();
+
+      fn = function() {
+        new GeoPoint([]);
+      };
+      fn.should.throw();
+
+      // array with more than two elements throws error
       fn = function() {
         new GeoPoint([70, -34, 33, 4]);
+      };
+      fn.should.throw();
+
+      // boolean is not allowed
+      fn = function() {
+        new GeoPoint(3, true);
+      };
+      fn.should.throw();
+
+      // null is not allowed
+      fn = function() {
+        new GeoPoint(null, -34);
+      };
+      fn.should.throw();
+
+      // undefined is not allowed
+      fn = function() {
+        var undef;
+        new GeoPoint(undef, -34);
       };
       fn.should.throw();
     });
