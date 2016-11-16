@@ -80,6 +80,12 @@ describe('GeoPoint', function() {
         new GeoPoint();
       };
       fn.should.throw();
+
+      // array with more than two elements is not allowed
+      fn = function() {
+        new GeoPoint([70, -34, 33, 4]);
+      };
+      fn.should.throw();
     });
   });
 
