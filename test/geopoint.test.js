@@ -39,6 +39,14 @@ describe('GeoPoint', function() {
       point.lng.should.equal(150);
     });
 
+    it('supports coordinates as inline parameters without new keyword',
+      function() {
+        var point = GeoPoint(-34, 150);
+
+        point.lat.should.equal(-34);
+        point.lng.should.equal(150);
+      });
+
     it('rejects invalid parameters', function() {
       var fn = function() {
         new GeoPoint('150,-34');
