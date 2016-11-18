@@ -54,6 +54,12 @@ describe('GeoPoint', function() {
       };
       fn.should.throw();
 
+      // string of numbers is not coerced
+      fn = function() {
+        new GeoPoint('2.3', 3);
+      };
+      fn.should.throw();
+
       // lattitude cannot be out of +/-90 degree range
       var fn = function() {
         new GeoPoint('150,-34');
@@ -92,6 +98,11 @@ describe('GeoPoint', function() {
 
       fn = function() {
         new GeoPoint([]);
+      };
+      fn.should.throw();
+
+      fn = function() {
+        new GeoPoint('', 2);
       };
       fn.should.throw();
 
