@@ -30,11 +30,12 @@ A call to constructor `GeoPoint()` can be made with either of the following argu
   ```json
   ...
   "properties": {
-    ...
       "location": {
         "type": "GeoPoint"
       },
     ...
+  }
+  ...
   ```
 
   or programtically:
