@@ -1,31 +1,33 @@
 # loopback-datatype-geopoint
-## A LoopBack Data type
 
-Class for creating LoopBack GeoPoint object which represents a physical location.
+## Overview
 
-This is an internal module used by [loopback-datasource-juggler](https://github.com/strongloop/loopback-datasource-juggler) and [strong-remoting](https://github.com/strongloop/strong-remoting).
+The Geopoint object is a LoopBack data type that represents a physical location.
+
+[loopback-datasource-juggler](https://github.com/strongloop/loopback-datasource-juggler) and [strong-remoting](https://github.com/strongloop/strong-remoting) modules use this object to facilitate use of `GeoPoint` data type in a LoopBack model properties & remote methods.
 
 ### Create a new GeoPoint object:
-Following is how you can create a GeoPoint object in LoopBack:
+For example, to create a GeoPoint object in LoopBack:
+
 ```javascript
 var loopback = require(‘loopback’);
 var here = new loopback.GeoPoint({lat: 10.32424, lng: 5.84978});
 ```
 
-A call to constructor `GeoPoint()` can be made with either of the following arguments, in order of: `lat,lng`:
-- In-line number arguments, i.e. `new GeoPoint(10.32, 5.84)`
-- `"lat, lng"` number string, i.e. `new GeoPoint('10.32, 5.84')`
-- An array with two number entries: `[lat, lng]`, i.e. `new GeoPoint([10.32, 5.84])`
-- An Object with two number properties: `lat` & `lng`, i.e. `new GeoPoint({ lat: 10.32, lng: 5.84})`
+The constructor requires two values:
+ - `lat`: Latitude point in degrees. **Range: -90 to 90**.
+ - `lng`: Longitude point in degrees. **Range: -180 to 180**
 
-  where:
-  - `lat`: The latitude point in degrees. **Range: -90 to 90**.
-  - `lng`: The longitude point in degrees. **Range: -180 to 180**.
+Call the constructor with any of the following arguments:
+ - Two numbers, for example `new GeoPoint(10.32, 5.84)`
+ - Number string of form "_lat_, _lng_", for example `new GeoPoint('10.32, 5.84')`
+ - Array with two number elements: `[lat, lng]`, for example `new GeoPoint([10.32, 5.84])`
+ - Object with two number properties: `lat` and `lng`, for example `new GeoPoint({ lat: 10.32, lng: 5.84})`
 
 ### Using GeoPoint type
 - in a LoopBack Model:
 
-  A model property can be declared of type `GeoPoint` in `<model>.json` file as:
+ Declare a GeoPoint property in the model JSON file, for example:
 
   ```json
   ...
